@@ -7,6 +7,8 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
+import Nest from "../components/Nest.js";
+import Logo from "../components/Logo.js";
 import { useNavigation } from "@react-navigation/native";
 
 const PlaceholderImage = require("../assets/images/5.png");
@@ -51,13 +53,11 @@ export default function UserInfoScreen() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.nestWrapper}>Nest</Text>
+      <Nest />
+      <Logo />
       <TouchableOpacity style={styles.goBackButton} onPress={goToSignIn}>
         <Text style={styles.goBackButtonText}>&larr;</Text>
       </TouchableOpacity>
-      <View style={styles.logoContainer}>
-        <Image source={logo} style={styles.logoImage} />
-      </View>
       <View style={styles.imageContainer}>
         <Image source={PlaceholderImage} style={styles.image} />
       </View>
@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   submitButtonText: {
-    color: "white",
+    color: "#F1DC1C",
     fontSize: 24,
     fontWeight: "bold",
     textAlign: "center",

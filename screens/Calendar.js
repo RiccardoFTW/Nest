@@ -1,6 +1,19 @@
 import React, { useState } from "react";
-import { View, StyleSheet } from "react-native";
+import {
+  View,
+  StyleSheet,
+  SafeAreaView,
+  TouchableOpacity,
+  Text,
+  Image,
+} from "react-native";
 import { Calendar, LocaleConfig } from "react-native-calendars";
+import Nest from "../components/Nest.js";
+import Logo from "../components/Logo.js";
+
+import { useNavigation } from "@react-navigation/native";
+
+const PlaceholderImage = require("../assets/images/4.png");
 
 LocaleConfig.locales["en"] = {
   monthNames: [
@@ -52,49 +65,103 @@ export default function CalendarScreen() {
     setSelectedDate(date.dateString);
   };
 
+  const navigation = useNavigation();
+
+  const goToTodolist = () => {
+    navigation.navigate("Todolist");
+  };
+
   return (
-    <View style={styles.container}>
-      <Calendar
-        style={styles.calendar}
-        onDayPress={handleDateSelect}
-        markedDates={{ [selectedDate]: { selected: true } }}
-        theme={{
-          calendarBackground: "#F1DC1C",
-          textSectionTitleColor: "#000",
-          selectedDayBackgroundColor: "#2A9CEE",
-          selectedDayTextColor: "#fff",
-          todayTextColor: "#2A9CEE",
-          dayTextColor: "#000",
-          textDisabledColor: "#fff",
-          dotColor: "#2A9CEE",
-          selectedDotColor: "#fff",
-          arrowColor: "#000",
-          monthTextColor: "#000",
-          indicatorColor: "#2A9CEE",
-          textDayFontFamily: "Arial",
-          textMonthFontFamily: "Arial",
-          textDayHeaderFontFamily: "Arial",
-          textDayFontSize: 16,
-          textMonthFontSize: 16,
-          textDayHeaderFontSize: 16,
-        }}
-      />
-    </View>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.imageContainer}>
+        <Image source={PlaceholderImage} style={styles.image} />
+      </View>
+      <Nest />
+      <Logo />
+      <View style={styles.content}>
+        <Calendar
+          style={styles.calendar}
+          onDayPress={handleDateSelect}
+          markedDates={{ [selectedDate]: { selected: true } }}
+          theme={{
+            calendarBackground: "#F1DC1C",
+            textSectionTitleColor: "#000",
+            selectedDayBackgroundColor: "#2A9CEE",
+            selectedDayTextColor: "#fff",
+            todayTextColor: "#2A9CEE",
+            dayTextColor: "#000",
+            textDisabledColor: "#fff",
+            dotColor: "#2A9CEE",
+            selectedDotColor: "#fff",
+            arrowColor: "#000",
+            monthTextColor: "#000",
+            indicatorColor: "#2A9CEE",
+            textDayFontFamily: "Arial",
+            textMonthFontFamily: "Arial",
+            textDayHeaderFontFamily: "Arial",
+            textDayFontSize: 16,
+            textMonthFontSize: 16,
+            textDayHeaderFontSize: 16,
+          }}
+        />
+      </View>
+      <View style={styles.footer}>
+        <TouchableOpacity style={styles.button} onPress={goToTodolist}>
+          <Text style={styles.buttonText}>Go to Todo List</Text>
+        </TouchableOpacity>
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "#2A9CEE",
+  },
+  content: {
+    flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#2A9CEE",
-    paddingBottom: 180,
   },
   calendar: {
     width: "90%",
     aspectRatio: 1,
     borderRadius: 18,
     fontFamily: "HaasGrotesk",
+  },
+  footer: {
+    height: 60,
+    borderTopWidth: 1,
+    borderTopColor: "#2A9CEE",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  button: {
+    position: "absolute",
+    backgroundColor: "#2A9CEE",
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 10,
+    marginBottom: 10,
+    paddingBottom: 10,
+  },
+  buttonText: {
+    color: "#F1DC1C",
+    fontSize: 24,
+    fontWeight: "bold",
+    fontFamily: "HaasGrotesk",
+    paddingBottom: 50,
+    textDecorationLine: "underline",
+  },
+  imageContainer: {
+    position: "absolute",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingTop: 100,
+  },
+  image: {
+    width: 150,
+    height: 220,
   },
 });

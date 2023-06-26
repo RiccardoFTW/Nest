@@ -8,6 +8,8 @@ import {
   Image,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import Nest from "../components/Nest.js";
+import Logo from "../components/Logo.js";
 
 export default function LoginForm() {
   const [name, setName] = useState("");
@@ -41,7 +43,8 @@ export default function LoginForm() {
         <TouchableOpacity style={styles.goBackButton} onPress={goToLogin}>
           <Text style={styles.goBackButtonText}>&larr;</Text>
         </TouchableOpacity>
-        <Text style={styles.nestWrapper}>Nest</Text>
+        <Nest />
+        <Logo />
         <Image source={PlaceholderImage} style={styles.image} />
         <TextInput
           style={styles.input}
@@ -115,14 +118,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     height: 300,
     width: 200,
-  },
-  nestWrapper: {
-    position: "absolute",
-    top: 80,
-    left: 24,
-    fontSize: 32,
-    color: "#fff",
-    fontWeight: "600",
   },
   goBackButton: {
     position: "absolute",

@@ -7,6 +7,8 @@ import {
   FlatList,
   StyleSheet,
 } from "react-native";
+import Logo from "../components/Logo.js";
+import Nest from "../components/Nest.js";
 
 export default function App() {
   const [task, setTask] = useState("");
@@ -40,6 +42,8 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <Nest />
+      <Logo />
       <Text style={styles.title}>To-Do List</Text>
       <View style={styles.inputContainer}>
         <TextInput
@@ -65,14 +69,16 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f5f5f5",
-    paddingTop: 50,
+    backgroundColor: "#2A9CEE",
+    paddingTop: 150,
     paddingHorizontal: 20,
   },
   title: {
     fontSize: 24,
     fontWeight: "bold",
     marginBottom: 20,
+    fontFamily: "HaasGrotesk",
+    color: "#F1DC1C",
   },
   inputContainer: {
     flexDirection: "row",
@@ -87,7 +93,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   addButton: {
-    backgroundColor: "#2A9CEE",
+    backgroundColor: "#0063AA",
     paddingHorizontal: 20,
     paddingVertical: 10,
     borderRadius: 4,
@@ -106,7 +112,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    backgroundColor: "#fff",
+    backgroundColor: "#F1DC1C",
     paddingVertical: 10,
     paddingHorizontal: 15,
     borderWidth: 1,

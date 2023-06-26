@@ -1,7 +1,9 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View, Text, Image } from "react-native";
+import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
 import { useFonts } from "expo-font";
 import Button from "../components/Button";
+import Nest from "../components/Nest.js";
+import Logo from "../components/Logo.js";
 
 const PlaceholderImage = require("../assets/images/nestHome.png");
 const logo = require("../assets/images/logoWhite.png");
@@ -18,10 +20,8 @@ export default function App({ navigation }) {
   return (
     <>
       <View style={styles.container}>
-        <Text style={styles.nestWrapper}>Nest</Text>
-        <View style={styles.logoContainer}>
-          <Image source={logo} style={styles.logoImage} />
-        </View>
+        <Nest />
+        <Logo />
         <View style={styles.imageContainer}>
           <Image source={PlaceholderImage} style={styles.image} />
         </View>
@@ -31,14 +31,21 @@ export default function App({ navigation }) {
           improve your life, thanks to a fantastic organization
         </Text>
         <View style={styles.footerContainer}>
-          <Button theme="primary" label="Sign in with Apple" />
-          <Button
-            theme="primary"
-            label="Sign in"
-            pressFunction={() => {
-              navigation.navigate("SignIn");
-            }}
-          />
+          <TouchableOpacity style={styles.buttonForm}>
+            <Text style={styles.buttonText}>Sign in with Apple</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.buttonForm}>
+            <Text
+              style={{
+                color: "#F1DC1C",
+                fontSize: 22,
+                fontFamily: "HaasGrotesk",
+                textDecorationLine: "underline",
+              }}
+            >
+              Sign in
+            </Text>
+          </TouchableOpacity>
         </View>
         <StatusBar style="auto" />
       </View>
@@ -66,7 +73,7 @@ const styles = StyleSheet.create({
   },
   loginText: {
     fontSize: 24,
-    fontFamily: "HaasGrotesk", // Applica il nome del font personalizzato qui
+    fontFamily: "HaasGrotesk",
     fontStyle: "bold",
     padding: 10,
     paddingBottom: 40,
@@ -74,29 +81,10 @@ const styles = StyleSheet.create({
   },
   welcome: {
     fontSize: 32,
-    fontFamily: "HaasGrotesk", // Applica il nome del font personalizzato qui
+    fontFamily: "HaasGrotesk",
     fontStyle: "bold",
     paddingBottom: 24,
     color: "white",
-  },
-  nestWrapper: {
-    position: "absolute",
-    top: 80,
-    left: 24,
-    fontSize: 32,
-    fontFamily: "HaasGrotesk", // Applica il nome del font personalizzato qui
-    color: "#fff",
-    fontWeight: "600",
-  },
-  logoContainer: {
-    position: "absolute",
-    top: 80,
-    right: 24,
-  },
-  logoImage: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
   },
   image: {
     width: 320,
@@ -105,5 +93,19 @@ const styles = StyleSheet.create({
   },
   buttonLabel: {
     fontFamily: "HaasGrotesk",
+  },
+  buttonForm: {
+    borderRadius: 8,
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    marginTop: 20,
+  },
+  buttonText: {
+    color: "#fff",
+    fontSize: 18,
+    fontWeight: "bold",
+    textAlign: "center",
+    fontFamily: "HaasGrotesk",
+    textDecorationLine: "underline",
   },
 });
