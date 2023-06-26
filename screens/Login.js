@@ -1,16 +1,29 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, Image } from "react-native";
+import { useFonts } from "expo-font";
 import Button from "../components/Button";
-import ImageViewer from "../components/ImageViewer";
 
 const PlaceholderImage = require("../assets/images/nestHome.png");
+const logo = require("../assets/images/logoWhite.png");
 
 export default function App({ navigation }) {
+  const [fontsLoaded] = useFonts({
+    HaasGrotesk: require("../assets/font/HaasGrotDisp-65Medium.otf"), // Sostituisci il percorso al font effettivo
+  });
+
+  if (!fontsLoaded) {
+    return null;
+  }
+
   return (
     <>
       <View style={styles.container}>
+        <Text style={styles.nestWrapper}>Nest</Text>
+        <View style={styles.logoContainer}>
+          <Image source={logo} style={styles.logoImage} />
+        </View>
         <View style={styles.imageContainer}>
-          <ImageViewer placeholderImageSource={PlaceholderImage} />
+          <Image source={PlaceholderImage} style={styles.image} />
         </View>
         <Text style={styles.welcome}>Ehi👋, Welcome to Nest!</Text>
         <Text style={styles.loginText}>
@@ -23,7 +36,7 @@ export default function App({ navigation }) {
             theme="primary"
             label="Sign in"
             pressFunction={() => {
-              navigation.navigate("Form");
+              navigation.navigate("SignIn");
             }}
           />
         </View>
@@ -42,29 +55,55 @@ const styles = StyleSheet.create({
   },
   imageContainer: {
     flex: 1,
-    padding: 50,
+    padding: 20,
+    marginTop: 100,
+  },
+  footerContainer: {
+    flex: 1 / 3,
+    alignItems: "center",
+    paddingBottom: 50,
+    height: 100,
+  },
+  loginText: {
+    fontSize: 24,
+    fontFamily: "HaasGrotesk", // Applica il nome del font personalizzato qui
+    fontStyle: "bold",
+    padding: 10,
+    paddingBottom: 40,
+    color: "#2e2e2e",
+  },
+  welcome: {
+    fontSize: 32,
+    fontFamily: "HaasGrotesk", // Applica il nome del font personalizzato qui
+    fontStyle: "bold",
+    paddingBottom: 24,
+    color: "white",
+  },
+  nestWrapper: {
+    position: "absolute",
+    top: 80,
+    left: 24,
+    fontSize: 32,
+    fontFamily: "HaasGrotesk", // Applica il nome del font personalizzato qui
+    color: "#fff",
+    fontWeight: "600",
+  },
+  logoContainer: {
+    position: "absolute",
+    top: 80,
+    right: 24,
+  },
+  logoImage: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
   },
   image: {
     width: 320,
     height: 440,
     borderRadius: 18,
   },
-  footerContainer: {
-    flex: 1 / 3,
-    alignItems: "center",
-    paddingBottom: 16,
-  },
-  loginText: {
-    fontSize: 24,
-    fontStyle: "bold",
-    padding: 10,
-    paddingBottom: 32,
-    color: "#2e2e2e",
-  },
-  welcome: {
-    fontSize: 32,
-    fontStyle: "bold",
-    paddingBottom: 32,
-    color: "white",
+  buttonLabel: {
+    fontFamily: "HaasGrotesk",
   },
 });

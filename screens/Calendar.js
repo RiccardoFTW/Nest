@@ -59,13 +59,13 @@ export default function CalendarScreen() {
         onDayPress={handleDateSelect}
         markedDates={{ [selectedDate]: { selected: true } }}
         theme={{
-          calendarBackground: "#fff",
+          calendarBackground: "#F1DC1C",
           textSectionTitleColor: "#000",
           selectedDayBackgroundColor: "#2A9CEE",
           selectedDayTextColor: "#fff",
           todayTextColor: "#2A9CEE",
           dayTextColor: "#000",
-          textDisabledColor: "#ccc",
+          textDisabledColor: "#fff",
           dotColor: "#2A9CEE",
           selectedDotColor: "#fff",
           arrowColor: "#000",
@@ -95,5 +95,6 @@ const styles = StyleSheet.create({
     width: "90%",
     aspectRatio: 1,
     borderRadius: 18,
+    fontFamily: "HaasGrotesk",
   },
 });

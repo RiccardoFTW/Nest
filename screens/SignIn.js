@@ -10,8 +10,10 @@ import {
 import { useNavigation } from "@react-navigation/native";
 
 export default function LoginForm() {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const PlaceholderImage = require("../assets/images/3.png");
 
@@ -19,16 +21,18 @@ export default function LoginForm() {
 
   const handleLogin = () => {
     // Implementa qui la logica di autenticazione
+    console.log("Name", name);
     console.log("Email:", email);
     console.log("Password:", password);
+    console.log("ConfirmPassword:", ConfirmPassword);
   };
 
   const goToLogin = () => {
-    navigation.navigate("Login"); // Naviga indietro alla pagina di login
+    navigation.navigate("Login");
   };
 
-  const goToCalendar = () => {
-    navigation.navigate("Calendar"); // Naviga alla pagina Calendar
+  const goToInterview = () => {
+    navigation.navigate("Interview");
   };
 
   return (
@@ -39,6 +43,12 @@ export default function LoginForm() {
         </TouchableOpacity>
         <Text style={styles.nestWrapper}>Nest</Text>
         <Image source={PlaceholderImage} style={styles.image} />
+        <TextInput
+          style={styles.input}
+          placeholder="Name"
+          value={name}
+          onChangeText={setName}
+        />
         <TextInput
           style={styles.input}
           placeholder="Email"
@@ -53,8 +63,14 @@ export default function LoginForm() {
           onChangeText={setPassword}
           secureTextEntry
         />
-
-        <TouchableOpacity style={styles.buttonForm} onPress={goToCalendar}>
+        <TextInput
+          style={styles.input}
+          placeholder="Confirm Password"
+          value={confirmPassword}
+          onChangeText={setConfirmPassword}
+          secureTextEntry
+        />
+        <TouchableOpacity onPress={goToInterview} style={styles.buttonForm}>
           <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
       </View>
@@ -73,26 +89,26 @@ const styles = StyleSheet.create({
   input: {
     height: 40,
     width: 280,
-    borderColor: "gray",
-    borderWidth: 1,
+    borderColor: "#fff",
+    borderWidth: 3,
     marginBottom: 14,
     paddingHorizontal: 8,
     backgroundColor: "#fff",
-    borderRadius: 20,
+    borderRadius: 30,
   },
   buttonForm: {
-    backgroundColor: "#000",
+    borderRadius: 8,
     paddingVertical: 12,
-    paddingHorizontal: 12,
-    borderRadius: 10,
-    alignItems: "center",
-    marginTop: 16,
+    paddingHorizontal: 24,
+    marginTop: 20,
   },
   buttonText: {
-    color: "#fff",
-    fontSize: 16,
+    color: "#000",
+    fontSize: 24,
     fontWeight: "bold",
-    width: 60,
+    textAlign: "center",
+    fontFamily: "HaasGrotesk",
+    textDecorationLine: "underline",
   },
   image: {
     alignItems: "center",
@@ -110,7 +126,7 @@ const styles = StyleSheet.create({
   },
   goBackButton: {
     position: "absolute",
-    top: 140,
+    top: 120,
     left: 24,
   },
   goBackButtonText: {
