@@ -22,11 +22,10 @@ export default function LoginForm() {
   const navigation = useNavigation();
 
   const handleLogin = () => {
-    // Implementa qui la logica di autenticazione
     console.log("Name", name);
     console.log("Email:", email);
     console.log("Password:", password);
-    console.log("ConfirmPassword:", ConfirmPassword);
+    console.log("ConfirmPassword:", confirmPassword);
   };
 
   const goToLogin = () => {
@@ -49,12 +48,14 @@ export default function LoginForm() {
         <TextInput
           style={styles.input}
           placeholder="Name"
+          placeholderTextColor="#fff"
           value={name}
           onChangeText={setName}
         />
         <TextInput
           style={styles.input}
           placeholder="Email"
+          placeholderTextColor="#fff"
           value={email}
           onChangeText={setEmail}
           keyboardType="email-address"
@@ -62,6 +63,7 @@ export default function LoginForm() {
         <TextInput
           style={styles.input}
           placeholder="Password"
+          placeholderTextColor="#fff"
           value={password}
           onChangeText={setPassword}
           secureTextEntry
@@ -69,6 +71,7 @@ export default function LoginForm() {
         <TextInput
           style={styles.input}
           placeholder="Confirm Password"
+          placeholderTextColor="#fff"
           value={confirmPassword}
           onChangeText={setConfirmPassword}
           secureTextEntry
@@ -92,12 +95,13 @@ const styles = StyleSheet.create({
   input: {
     height: 40,
     width: 280,
-    borderColor: "#fff",
-    borderWidth: 3,
+    borderBottomWidth: 1,
+    borderBottomColor: "#fff",
     marginBottom: 14,
     paddingHorizontal: 8,
-    backgroundColor: "#fff",
-    borderRadius: 30,
+    color: "#fff",
+    backgroundColor: "transparent",
+    fontFamily: "HaasGrotesk",
   },
   buttonForm: {
     borderRadius: 8,
@@ -106,7 +110,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   buttonText: {
-    color: "#000",
+    color: "#F1DC1C",
     fontSize: 24,
     fontWeight: "bold",
     textAlign: "center",
@@ -125,7 +129,7 @@ const styles = StyleSheet.create({
     left: 24,
   },
   goBackButtonText: {
-    color: "#fff",
+    color: "#F1DC1C",
     fontSize: 32,
   },
 });

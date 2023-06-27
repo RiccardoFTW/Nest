@@ -7,10 +7,18 @@ import {
   FlatList,
   StyleSheet,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+
 import Logo from "../components/Logo.js";
 import Nest from "../components/Nest.js";
 
 export default function App() {
+  const navigation = useNavigation();
+
+  const goToCalendar = () => {
+    navigation.navigate("Calendar");
+  };
+
   const [task, setTask] = useState("");
   const [tasks, setTasks] = useState([]);
 
@@ -44,6 +52,9 @@ export default function App() {
     <View style={styles.container}>
       <Nest />
       <Logo />
+      <TouchableOpacity style={styles.goBackButton} onPress={goToCalendar}>
+        <Text style={styles.goBackButtonText}>&larr;</Text>
+      </TouchableOpacity>
       <Text style={styles.title}>To-Do List</Text>
       <View style={styles.inputContainer}>
         <TextInput
@@ -69,8 +80,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#2A9CEE",
-    paddingTop: 150,
+    backgroundColor: "#1398F9",
+    paddingTop: 170,
     paddingHorizontal: 20,
   },
   title: {
@@ -133,5 +144,14 @@ const styles = StyleSheet.create({
   deleteButtonText: {
     color: "#fff",
     fontWeight: "bold",
+  },
+  goBackButton: {
+    position: "absolute",
+    top: 120,
+    left: 24,
+  },
+  goBackButtonText: {
+    color: "#F1DC1C",
+    fontSize: 32,
   },
 });

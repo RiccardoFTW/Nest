@@ -1,21 +1,27 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
 import { useFonts } from "expo-font";
-import Button from "../components/Button";
+import { useNavigation } from "@react-navigation/native";
+
 import Nest from "../components/Nest.js";
 import Logo from "../components/Logo.js";
 
 const PlaceholderImage = require("../assets/images/nestHome.png");
-const logo = require("../assets/images/logoWhite.png");
 
-export default function App({ navigation }) {
+export default function Login({}) {
   const [fontsLoaded] = useFonts({
-    HaasGrotesk: require("../assets/font/HaasGrotDisp-65Medium.otf"), // Sostituisci il percorso al font effettivo
+    HaasGrotesk: require("../assets/font/HaasGrotDisp-65Medium.otf"),
   });
 
   if (!fontsLoaded) {
     return null;
   }
+
+  const navigation = useNavigation();
+
+  const goToSignIn = () => {
+    navigation.navigate("SignIn");
+  };
 
   return (
     <>
@@ -38,10 +44,11 @@ export default function App({ navigation }) {
             <Text
               style={{
                 color: "#F1DC1C",
-                fontSize: 22,
+                fontSize: 24,
                 fontFamily: "HaasGrotesk",
                 textDecorationLine: "underline",
               }}
+              onPress={goToSignIn}
             >
               Sign in
             </Text>
@@ -56,7 +63,7 @@ export default function App({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#2A9CEE",
+    backgroundColor: "#1398F9",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -76,7 +83,7 @@ const styles = StyleSheet.create({
     fontFamily: "HaasGrotesk",
     fontStyle: "bold",
     padding: 10,
-    paddingBottom: 40,
+    paddingBottom: 30,
     color: "#2e2e2e",
   },
   welcome: {
@@ -95,14 +102,13 @@ const styles = StyleSheet.create({
     fontFamily: "HaasGrotesk",
   },
   buttonForm: {
-    borderRadius: 8,
     paddingVertical: 12,
     paddingHorizontal: 24,
-    marginTop: 20,
+    marginTop: 10,
   },
   buttonText: {
     color: "#fff",
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: "bold",
     textAlign: "center",
     fontFamily: "HaasGrotesk",
